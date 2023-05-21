@@ -1,5 +1,6 @@
 import MainScreen from "./screens/main/MainScreen";
 import DetailScreen from "./screens/detail/DetailScreen";
+import SearchScreen from "./screens/search/SearchScreen";
 
 import "react-native-gesture-handler";
 import React from "react";
@@ -22,6 +23,13 @@ export default function App() {
         <Stack.Screen
           name="DetailScreen"
           component={DetailScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SearchScreen"
+          component={SearchScreen}
           options={{
             headerShown: false,
           }}

@@ -102,7 +102,9 @@ const MainScreen = ({ navigation }) => {
       </View>
       <View style={styles.bottomContainer}>
         <Image source={HomeIcon} style={styles.bottomIconHome}></Image>
-        <Image source={SearchIcon} style={styles.bottomIconSearch}></Image>
+        <TouchableOpacity onPress={() => navigation.navigate("SearchScreen")}>
+          <Image source={SearchIcon} style={styles.bottomIconSearch}></Image>
+        </TouchableOpacity>
         <Image source={FavIcon} style={styles.bottomIconFav}></Image>
         <Image source={MyPageIcon} style={styles.bottomIconMyPage}></Image>
       </View>
