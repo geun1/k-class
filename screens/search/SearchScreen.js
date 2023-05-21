@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React , {useState} from "react";
 import { View,Text,StyleSheet,TextInput,Button,Pressable } from "react-native";
+import styled from 'styled-components/native';
 import {db} from "../../configuration.js"
 import BasicBtn from "./BasicBtn.js";
 
@@ -8,40 +9,62 @@ import BasicBtn from "./BasicBtn.js";
 import RangeSlider from 'rn-range-slider';
 import Slider from '@react-native-community/slider';
 import { Ionicons } from '@expo/vector-icons';
+//import styles from 'rn-range-slider/styles.js';
+
+
+const ModalMajor = styled.View`
+  width : 80%;
+  flex-direction : row;
+  justify-content : space-between;
+  align-items : center;
+`;
 
 const SearchScreen = () => {
 
-  const [cName, setcName] = useState('') //className
-  const [dept, setDept] = useState('')
-  const [major,setMajor] = useState(0); //1 : 전공 2 : 심교 3: 기교
+  const [cName, setcName] = useState('') //과목이름
+  const [dept, setDept] = useState('')   //학과 저장
+  const [major,setMajor] = useState(0);  //1 : 전공 2 : 심교 3: 기교
+  const [majorDetail, setMajorDetail] = useState([false,false,false]);
   
+  //학년 1,2,3,4,All
   const [grade,setGrade] = useState([false,false,false,false,false]);
+  //요일 월,화,수,목,금
   const [day,setDay] = useState([false,false,false,false,false]);
 
+  //심교 기교 선택 시 학년 선택 필요없음
   const [noGrade,setNoGrade] = useState(false);
   
   //전공 심교 기교
-
   const handlePress__major = (val) => {
     if(major == 0){
       if(val === 1){ setMajor(1); }
       else if(val === 2){ //학년 선택 불가
         setMajor(2);
+        setNoGrade(true);
         //세부분야 드롭다운
       }
       else //기교 - 학년 선택 불가
       {
         setMajor(3);
+        setNoGrade(true);
       }
     }
-    else setMajor(0);
-
-    if(major > 1) setNoGrade(true)
-    else setNoGrade(false)
-    setTimeout(()=>{console.log(major);},10);
+    else {
+      setMajor(0);
+      setNoGrade(false);
+    }  
     
   }
 
+  //심교 분야 선택
+  const handlePress__majorDetail = (val) =>{
+    temp = [...majorDetail];
+    temp[val] = !temp[val];
+    setMajorDetail(temp);
+  }
+
+
+  //심교 기교 전공 중 하나만 선택 가능하도록
   const majorCheck = (m) => {
     if(major>0) {
       if(major === m) return false;
@@ -112,6 +135,22 @@ const SearchScreen = () => {
          onPress={()=>{handlePress__major(3)}}/>
       </View>
 
+      {
+          major === 2 ? 
+          <ModalMajor>
+            <BasicBtn name="글로벌 인재 양성" small="2" 
+            onPress={()=>handlePress__majorDetail(0)}/>
+
+            <BasicBtn name="학문소양 및 인성함양" small="2" 
+            onPress={()=>handlePress__majorDetail(1)}/>
+
+            <BasicBtn name="사고력 증진" small="2" 
+            onPress={()=>handlePress__majorDetail(2)}/>
+            {/* <ModalBtn><Text style={style.textStyle}>학문소양 및 인성함양</Text></ModalBtn>
+            <ModalBtn><Text style={style.textStyle}>사고력 증진</Text></ModalBtn> */}
+          </ModalMajor> : ""
+         }
+
       {/* 학년 선택 */}
       <View style={style.btnContainer} >
         <BasicBtn name="1" small="1" disable={grade[4]||noGrade? true:false}
@@ -128,7 +167,7 @@ const SearchScreen = () => {
 
       {/*시간 선택 -> 슬라이드 바*/}
       <Slider 
-      style={{width :200 , height:40}}
+      style={{width :"80%" , height:40}}
       minimumValue={0}
       maximumValue={1}
       />
@@ -187,6 +226,12 @@ const style = StyleSheet.create({
     flexDirection : "row",
     justifyContent :"space-between",
   },
+  textStyle : {
+    textAlign : "center",
+    fontWeight : 700,
+    fontSize : 10,
+    paddingTop:6,
+  }
 
 })
 

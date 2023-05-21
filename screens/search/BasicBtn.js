@@ -23,6 +23,17 @@ const BasicBtn = ({name , small, disable , onPress}) => {
       </Pressable>
     )
   }
+  else if(small == 2){
+    return (
+      <Pressable 
+        style={[style.btn__md , {backgroundColor : isPressed ? '#B0CDA6' : "rgba(176, 205, 166, 0.21)"}]}
+        onPress={handlePressed}
+        disabled = {disable}
+      >
+        <Text style={[style.text__md,{color : isPressed? "#ffffff":"#036B3F"}]}>{name}</Text>
+      </Pressable>
+    )
+  }
   else {
     return (
     <Pressable
@@ -45,7 +56,6 @@ const style = StyleSheet.create({
   btn : {
     justifyContent: "center",
     alignItems : "center",
-    textAlign : "center",
     borderWidth : 1.5,
     borderColor :"#036B3F",
     borderRadius : 10,
@@ -66,6 +76,18 @@ const style = StyleSheet.create({
     fontSize : 18,
     fontWeight : 700,
   },
+  btn__md : {
+    justifyContent: "center",
+    alignItems : "center",
+    width: 88,
+    height: 25,
+    backgroundColor :"rgba(176, 205, 166, 0.21)",
+    borderRadius: 10,
+  },
+  text__md : {
+    fontSize : 10,
+    fontWeight : 700,
+  }
 
 })
 

@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/webpack-config": "^18.0.1",
     "@react-native-community/slider": "^4.4.2",
     "@react-native-firebase/app": "^17.5.0",
     "@react-native-firebase/database": "^17.5.0",
@@ -17,12 +18,12 @@
     "expo-status-bar": "~1.4.4",
     "firebase": "^9.22.0",
     "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-native": "0.71.7",
+    "react-native-web": "~0.18.10",
     "rn-range-slider": "^2.2.2",
     "styled-component": "^2.8.0",
-    "react-native-web": "~0.18.10",
-    "react-dom": "18.2.0",
-    "@expo/webpack-config": "^18.0.1"
+    "styled-components": "^5.3.10"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
