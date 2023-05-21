@@ -6,6 +6,7 @@ import {
   ScrollView,
   Dimensions,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import FavoriteImg from "../../assets/main/img_favorite.png";
 import HomeIcon from "../../assets/main/img_homeIcon.png";
@@ -15,7 +16,7 @@ import MyPageIcon from "../../assets/main/img_myPageIcon.png";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
-const MainScreen = () => {
+const MainScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
@@ -43,11 +44,14 @@ const MainScreen = () => {
         </View>
         <View style={styles.listContainer}>
           <ScrollView contentContainerStyle={styles.listScroll}>
-            <View style={styles.listItem}>
+            <TouchableOpacity
+              style={styles.listItem}
+              onPress={() => navigation.navigate("DetailScreen")}
+            >
               <Text style={styles.listItemNum}>1644</Text>
-              <Text style={styles.listItemTitle}>20세기 패션사</Text>
+              <Text style={styles.listItemTitle}>20세기 패션사1</Text>
               <Image source={FavoriteImg} style={styles.listItemFav}></Image>
-            </View>
+            </TouchableOpacity>
             <View style={styles.listItem}>
               <Text style={styles.listItemNum}>1644</Text>
               <Text style={styles.listItemTitle}>20세기 패션사</Text>
