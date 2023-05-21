@@ -1,5 +1,3 @@
-import { View } from "react-native";
+import MainScreen from "./screens/main/MainScreen";
 
-export default function App() {
-  return <View>app start</View>;
-}
+export default MainScreen;
