@@ -1,47 +1,40 @@
-import { useState , useEffect } from "react";
-import { View,Text,StyleSheet } from "react-native";
+import MainScreen from "./screens/main/MainScreen";
+import DetailScreen from "./screens/detail/DetailScreen";
+import SearchScreen from "./screens/search/SearchScreen";
 
-import {db} from "./configuration.js";
-import SearchScreen from "./screens/search/SearchScreen.js"
-import { collection, getDocs } from "firebase/firestore";
+import "react-native-gesture-handler";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
+const Stack = createStackNavigator();
 
 export default function App() {
-
-  // const [classInfo, setclassInfo] = useState([]);
-
-  // const readFromDB = async () => {
-  //   try{
-  //     const result = await getDocs(collection(db,"test"))
-  //     setclassInfo(result.docs[1].data()); 
-  //     console.log(result.docs[1].data());
-  //   }
-  //   catch(err){
-  //     console.log("error",err.message)
-  //   }
-
-  // }
-
-    
-  // useEffect(() => {
-  //   readFromDB()
-  // },[])
-
   return (
-    <View style = { style.container}>
-      <SearchScreen/>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="MainScreen">
+        <Stack.Screen
+          name="MainScreen"
+          component={MainScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="DetailScreen"
+          component={DetailScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SearchScreen"
+          component={SearchScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-  
 }
-
-const style = StyleSheet.create({
-  container : {
-    flex: 1,
-    flexDirection : "column",
-    justifyContent : "center",
-    alignItems : "center",
-    backgroundColor : "#f5f5f5",
-  }
-
-})
