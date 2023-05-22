@@ -1,6 +1,9 @@
 import MainScreen from "./screens/main/MainScreen";
 import DetailScreen from "./screens/detail/DetailScreen";
 import SearchScreen from "./screens/search/SearchScreen";
+import SplashScreen from "./screens/splash/SplashScreen";
+import LoginScreen from "./screens/login/LoginScreen";
+import SignupScreen from "./screens/signup/SignupScreen";
 
 import "react-native-gesture-handler";
 import React from "react";
@@ -12,7 +15,29 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="MainScreen">
+      <Stack.Navigator initialRouteName="SplashScreen">
+        <Stack.Screen
+          name="StartScreen"
+          component={SplashScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+
+        <Stack.Screen
+          name="LoginScreen"
+          component={LoginScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SignupScreen"
+          component={SignupScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
         <Stack.Screen
           name="MainScreen"
           component={MainScreen}
