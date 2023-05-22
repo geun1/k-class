@@ -4,6 +4,7 @@ import { View,Text,StyleSheet,TextInput,Button,Pressable } from "react-native";
 import styled from 'styled-components/native';
 import {db} from "../../configuration.js"
 import BasicBtn from "./BasicBtn.js";
+import SearchEngine from "./SearchEngine.js"
 
 //slider library
 import RangeSlider from 'rn-range-slider';
