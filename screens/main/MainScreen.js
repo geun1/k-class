@@ -14,10 +14,13 @@ import SearchIcon from "../../assets/main/img_searchIcon.png";
 import FavIcon from "../../assets/main/img_favIcon.png";
 import MyPageIcon from "../../assets/main/img_myPageIcon.png";
 
+import { useSelector } from "react-redux";
+
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 const MainScreen = ({ navigation }) => {
 
+  const classes = useSelector((state)=> state.classes);
 
   return (
     <View style={styles.container}>

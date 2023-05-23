@@ -11,10 +11,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import styled from "styled-components/native";
-import { db } from "../../configuration.js";
 import BasicBtn from "./BasicBtn.js";
-import SearchEngine from "./SearchEngine.js"
-import {searchClass} from "./utils.js";
 
 //slider library
 import RangeSlider from "rn-range-slider";
@@ -27,6 +24,11 @@ import HomeIcon from "../../assets/main/img_homeIcon.png";
 import SearchIcon from "../../assets/main/img_searchIcon.png";
 import FavIcon from "../../assets/main/img_favIcon.png";
 import MyPageIcon from "../../assets/main/img_myPageIcon.png";
+
+import {searchClass} from "./utils.js";
+import { useDispatch , useSelector } from "react-redux";
+import { addResult ,clearResult } from "../../redux/slices/classes";
+
 
 const ModalMajor = styled.View`
   width: 80%;
@@ -44,10 +46,12 @@ const SearchScreen = ({navigation}) => {
   const [grade, setGrade] = useState([false, false, false, false, false]);
   //요일 월,화,수,목,금
   const [day, setDay] = useState([false, false, false, false, false]);
-
-
   //심교 기교 선택 시 학년 선택 필요없음
   const [noGrade, setNoGrade] = useState(false);
+
+  const dispatch = useDispatch();
+  let data = [];
+
   //전공 심교 기교
   const handlePress__major = (val) => {
     if (major == 0) {
@@ -104,6 +108,7 @@ const SearchScreen = ({navigation}) => {
     setDay(temp);
     console.log(day);
   };
+
 
   return (
     <View style={{flex:1}}>
@@ -276,9 +281,9 @@ const SearchScreen = ({navigation}) => {
       >
         <BasicBtn name="검색" 
         onPress={()=>{
-          //Search(datas)
-          searchClass([cName , dept , major , majorDetail , grade , day]);
-          //데이터 넘겨주기
+          dispatch(clearResult())
+          data = [...searchClass([cName , dept , major , majorDetail , grade , day])]
+          dispatch(addResult(data))
           navigation.navigate("MainScreen");
         }} />
       </View>
