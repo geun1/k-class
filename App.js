@@ -4,7 +4,7 @@ import SearchScreen from "./screens/search/SearchScreen";
 import SplashScreen from "./screens/splash/SplashScreen";
 import LoginScreen from "./screens/login/LoginScreen";
 import SignupScreen from "./screens/signup/SignupScreen";
-
+import FavScreen from "./screens/fav/FavScreen";
 import "react-native-gesture-handler";
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
@@ -55,6 +55,13 @@ export default function App() {
         <Stack.Screen
           name="SearchScreen"
           component={SearchScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="FavScreen"
+          component={FavScreen}
           options={{
             headerShown: false,
           }}

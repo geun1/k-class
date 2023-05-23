@@ -8,10 +8,10 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import FavoriteImg from "../../assets/main/img_favorite.png";
-import HomeIcon from "../../assets/main/img_homeIcon.png";
+import FavoriteImg from "../../assets/fav/img_favoriteSelected.png";
+import HomeIcon from "../../assets/fav/img_homeIcon.png";
 import SearchIcon from "../../assets/main/img_searchIcon.png";
-import FavIcon from "../../assets/main/img_favIcon.png";
+import FavIcon from "../../assets/fav/img_favIconSelected.png";
 import MyPageIcon from "../../assets/main/img_myPageIcon.png";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
@@ -101,14 +101,14 @@ const MainScreen = ({ navigation }) => {
         </View>
       </View>
       <View style={styles.bottomContainer}>
-        <Image source={HomeIcon} style={styles.bottomIconHome}></Image>
+        <TouchableOpacity onPress={() => navigation.navigate("MainScreen")}>
+          <Image source={HomeIcon} style={styles.bottomIconHome}></Image>
+        </TouchableOpacity>
+
         <TouchableOpacity onPress={() => navigation.navigate("SearchScreen")}>
           <Image source={SearchIcon} style={styles.bottomIconSearch}></Image>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("FavScreen")}>
-          <Image source={FavIcon} style={styles.bottomIconFav}></Image>
-        </TouchableOpacity>
-
+        <Image source={FavIcon} style={styles.bottomIconFav}></Image>
         <Image source={MyPageIcon} style={styles.bottomIconMyPage}></Image>
       </View>
     </View>
@@ -182,8 +182,8 @@ const styles = StyleSheet.create({
     fontWeight: 500,
   },
   listItemFav: {
-    width: 30,
-    height: 30,
+    width: 26,
+    height: 22.94,
   },
   bottomContainer: {
     flex: 1,
