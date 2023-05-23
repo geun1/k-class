@@ -15,6 +15,7 @@ import FavIcon from "../../assets/main/img_favIcon.png";
 import MyPageIcon from "../../assets/main/img_myPageIcon.png";
 import BackIcon from "../../assets/detail/img_backIcon.png";
 import FavWIcon from "../../assets/detail/img_favIconW.png";
+import StarIcon from "../../assets/detail/img_commentStar1.png";
 
 const DetailScreen = ({ navigation }) => {
   const [comment, setComment] = useState("");
@@ -86,6 +87,49 @@ const DetailScreen = ({ navigation }) => {
                   setComment(comment);
                 }}
               ></TextInput>
+              <View style={styles.classCommentStarContainer}>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+              </View>
+            </View>
+            <View style={styles.classCommentBox}>
+              <Text style={styles.classComment}>
+                수업은 지루하지만 학점은 잘 주십니다.
+              </Text>
+              <View style={styles.classCommentStarContainer}>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+              </View>
+            </View>
+            <View style={styles.classCommentBox}>
+              <Text style={styles.classComment}>
+                수업은 지루하지만 학점은 잘 주십니다.
+              </Text>
+              <View style={styles.classCommentStarContainer}>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+              </View>
+            </View>
+            <View style={styles.classCommentBox}>
+              <Text style={styles.classComment}>
+                수업은 지루하지만 학점은 잘 주십니다.
+              </Text>
+              <View style={styles.classCommentStarContainer}>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+              </View>
             </View>
           </View>
         </ScrollView>
@@ -195,6 +239,27 @@ const styles = StyleSheet.create({
     borderColor: "#B0CDA6",
     borderRadius: 10,
     marginBottom: 20,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    flexDirection: "row",
+  },
+  classComment: {
+    flex: 1,
+    fontSize: 12,
+    fontWeight: 500,
+  },
+  classCommentStarContainer: {
+    flexDirection: "row",
+  },
+  classCommentStar: {},
+  classCommentBox: {
+    flex: 1,
+    flexDirection: "row",
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderColor: "#036B3F",
+    borderRadius: 10,
+    marginBottom: 5,
     paddingVertical: 12,
     paddingHorizontal: 10,
   },
