@@ -17,6 +17,8 @@ import MyPageIcon from "../../assets/main/img_myPageIcon.png";
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 const MainScreen = ({ navigation }) => {
+
+
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
@@ -49,7 +51,7 @@ const MainScreen = ({ navigation }) => {
               onPress={() => navigation.navigate("DetailScreen")}
             >
               <Text style={styles.listItemNum}>1644</Text>
-              <Text style={styles.listItemTitle}>20세기 패션사1</Text>
+              <Text style={styles.listItemTitle}>20세기 패션사</Text>
               <Image source={FavoriteImg} style={styles.listItemFav}></Image>
             </TouchableOpacity>
             <View style={styles.listItem}>

@@ -7,17 +7,26 @@ import {
   TextInput,
   Button,
   Pressable,
+  Image,
+  TouchableOpacity,
 } from "react-native";
 import styled from "styled-components/native";
 import { db } from "../../configuration.js";
 import BasicBtn from "./BasicBtn.js";
 import SearchEngine from "./SearchEngine.js"
+import {searchClass} from "./utils.js";
 
 //slider library
 import RangeSlider from "rn-range-slider";
 import Slider from "@react-native-community/slider";
 import { Ionicons } from "@expo/vector-icons";
-//import styles from 'rn-range-slider/styles.js';
+
+//Icons
+import FavoriteImg from "../../assets/main/img_favorite.png";
+import HomeIcon from "../../assets/main/img_homeIcon.png";
+import SearchIcon from "../../assets/main/img_searchIcon.png";
+import FavIcon from "../../assets/main/img_favIcon.png";
+import MyPageIcon from "../../assets/main/img_myPageIcon.png";
 
 const ModalMajor = styled.View`
   width: 80%;
@@ -26,20 +35,19 @@ const ModalMajor = styled.View`
   align-items: center;
 `;
 
-const SearchScreen = () => {
+const SearchScreen = ({navigation}) => {
   const [cName, setcName] = useState(""); //과목이름
   const [dept, setDept] = useState(""); //학과 저장
   const [major, setMajor] = useState(0); //1 : 전공 2 : 심교 3: 기교
   const [majorDetail, setMajorDetail] = useState([false, false, false]);
-
   //학년 1,2,3,4,All
   const [grade, setGrade] = useState([false, false, false, false, false]);
   //요일 월,화,수,목,금
   const [day, setDay] = useState([false, false, false, false, false]);
 
+
   //심교 기교 선택 시 학년 선택 필요없음
   const [noGrade, setNoGrade] = useState(false);
-
   //전공 심교 기교
   const handlePress__major = (val) => {
     if (major == 0) {
@@ -98,9 +106,12 @@ const SearchScreen = () => {
   };
 
   return (
-    <View style={style.container}>
+    <View style={{flex:1}}>
       {/* NAV */}
-
+      <View style={style.topContainer}>
+        <Text style={style.title}>수업 조회</Text>
+      </View>
+      <View style={style.container}>
       {/*//교과목 검색 */}
       <View style={style.inputWrapper}>
         <TextInput
@@ -263,18 +274,37 @@ const SearchScreen = () => {
           justifyContent: "flex-end",
         }}
       >
-        <BasicBtn name="검색" />
+        <BasicBtn name="검색" 
+        onPress={()=>{
+          //Search(datas)
+          searchClass([cName , dept , major , majorDetail , grade , day]);
+          //데이터 넘겨주기
+          navigation.navigate("MainScreen");
+        }} />
       </View>
 
       {/* MENU BAR */}
     </View>
+    <View style={style.bottomContainer}>
+      <TouchableOpacity onPress={()=>navigation.navigate("MainScreen")}>
+        <Image source={HomeIcon} style={style.bottomIconHome}></Image>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("SearchScreen")}>
+        <Image source={SearchIcon} style={style.bottomIconSearch}></Image>
+      </TouchableOpacity>
+      <Image source={FavIcon} style={style.bottomIconFav}></Image>
+      <Image source={MyPageIcon} style={style.bottomIconMyPage}></Image>
+    </View>
+
+    </View>
+    
   );
 };
 
 const style = StyleSheet.create({
   container: {
     flex: 0.75,
-    width: 352,
+    //width: 352,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-between",
@@ -282,6 +312,17 @@ const style = StyleSheet.create({
     borderRadius: 15,
     paddingTop: 27,
     paddingBottom: 27,
+  },
+  topContainer: {
+    flex: 0.15,
+    backgroundColor: "#036B3F",
+    alignItems: "center",
+  },
+  title: {
+    color: "#fff",
+    fontSize: 28,
+    fontWeight: 700,
+    marginTop: 67,
   },
   inputWrapper: {
     flexDirection: "row",
@@ -306,6 +347,34 @@ const style = StyleSheet.create({
     fontWeight: 700,
     fontSize: 10,
     paddingTop: 6,
+  },
+  bottomContainer: {
+    flex: 0.1,
+    backgroundColor: "#036B3F",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  bottomIconHome: {
+    marginLeft: 41,
+    width: 34,
+    height: 38.25,
+    marginRight: 55,
+  },
+  bottomIconSearch: {
+    width: 38,
+    height: 38,
+    marginRight: 54,
+  },
+  bottomIconFav: {
+    width: 38,
+    height: 34.87,
+    marginRight: 51,
+  },
+  bottomIconMyPage: {
+    width: 38,
+    height: 38,
+    marginRight: 41,
   },
 });
 
