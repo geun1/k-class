@@ -10,12 +10,16 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
+import store from './redux/store'
+import {Provider} from 'react-redux'
+
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="SplashScreen">
+    <Provider store={store}>
+      <NavigationContainer>
+      <Stack.Navigator initialRouteName="MainScreen">
         <Stack.Screen
           name="StartScreen"
           component={SplashScreen}
@@ -60,6 +64,8 @@ export default function App() {
           }}
         />
       </Stack.Navigator>
-    </NavigationContainer>
+     </NavigationContainer>
+    </Provider>
+
   );
 }
