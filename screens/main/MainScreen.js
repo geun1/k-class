@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -19,8 +19,7 @@ import { useSelector } from "react-redux";
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 const MainScreen = ({ navigation }) => {
-
-  const classes = useSelector((state)=> state.classes);
+  const classes = useSelector((state) => state.classes);
 
   return (
     <View style={styles.container}>
@@ -49,59 +48,24 @@ const MainScreen = ({ navigation }) => {
         </View>
         <View style={styles.listContainer}>
           <ScrollView contentContainerStyle={styles.listScroll}>
-            <TouchableOpacity
-              style={styles.listItem}
-              onPress={() => navigation.navigate("DetailScreen")}
-            >
-              <Text style={styles.listItemNum}>1644</Text>
-              <Text style={styles.listItemTitle}>20세기 패션사</Text>
-              <Image source={FavoriteImg} style={styles.listItemFav}></Image>
-            </TouchableOpacity>
-            <View style={styles.listItem}>
-              <Text style={styles.listItemNum}>1644</Text>
-              <Text style={styles.listItemTitle}>20세기 패션사</Text>
-              <Image source={FavoriteImg} style={styles.listItemFav}></Image>
-            </View>
-            <View style={styles.listItem}>
-              <Text style={styles.listItemNum}>1644</Text>
-              <Text style={styles.listItemTitle}>20세기 패션사</Text>
-              <Image source={FavoriteImg} style={styles.listItemFav}></Image>
-            </View>
-            <View style={styles.listItem}>
-              <Text style={styles.listItemNum}>1644</Text>
-              <Text style={styles.listItemTitle}>20세기 패션사</Text>
-              <Image source={FavoriteImg} style={styles.listItemFav}></Image>
-            </View>
-            <View style={styles.listItem}>
-              <Text style={styles.listItemNum}>1644</Text>
-              <Text style={styles.listItemTitle}>20세기 패션사</Text>
-              <Image source={FavoriteImg} style={styles.listItemFav}></Image>
-            </View>
-            <View style={styles.listItem}>
-              <Text style={styles.listItemNum}>1644</Text>
-              <Text style={styles.listItemTitle}>20세기 패션사</Text>
-              <Image source={FavoriteImg} style={styles.listItemFav}></Image>
-            </View>
-            <View style={styles.listItem}>
-              <Text style={styles.listItemNum}>1644</Text>
-              <Text style={styles.listItemTitle}>20세기 패션사</Text>
-              <Image source={FavoriteImg} style={styles.listItemFav}></Image>
-            </View>
-            <View style={styles.listItem}>
-              <Text style={styles.listItemNum}>1644</Text>
-              <Text style={styles.listItemTitle}>20세기 패션사</Text>
-              <Image source={FavoriteImg} style={styles.listItemFav}></Image>
-            </View>
-            <View style={styles.listItem}>
-              <Text style={styles.listItemNum}>1644</Text>
-              <Text style={styles.listItemTitle}>20세기 패션사</Text>
-              <Image source={FavoriteImg} style={styles.listItemFav}></Image>
-            </View>
-            <View style={styles.listItem}>
-              <Text style={styles.listItemNum}>1644</Text>
-              <Text style={styles.listItemTitle}>20세기 패션사</Text>
-              <Image source={FavoriteImg} style={styles.listItemFav}></Image>
-            </View>
+            {classes.map(function (i) {
+              return (
+                <TouchableOpacity
+                  key={i.No}
+                  style={styles.listItem}
+                  onPress={() => {
+                    navigation.navigate("DetailScreen", { data: i });
+                  }}
+                >
+                  <Text style={styles.listItemNum}>{i["과목\n번호"]}</Text>
+                  <Text style={styles.listItemTitle}>{i.교과목명}</Text>
+                  <Image
+                    source={FavoriteImg}
+                    style={styles.listItemFav}
+                  ></Image>
+                </TouchableOpacity>
+              );
+            })}
           </ScrollView>
         </View>
       </View>

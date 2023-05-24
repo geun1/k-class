@@ -17,15 +17,16 @@ import BackIcon from "../../assets/detail/img_backIcon.png";
 import FavWIcon from "../../assets/detail/img_favIconW.png";
 import StarIcon from "../../assets/detail/img_commentStar1.png";
 
-const DetailScreen = ({ navigation }) => {
+const DetailScreen = ({ navigation, route }) => {
   const [comment, setComment] = useState("");
+  const data = route.params.data;
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
         <TouchableOpacity onPress={() => navigation.navigate("MainScreen")}>
           <Image source={BackIcon} style={styles.topBack}></Image>
         </TouchableOpacity>
-        <Text style={styles.title}>20세기 패션사</Text>
+        <Text style={styles.title}>{data.교과목명}</Text>
         <Image source={FavWIcon} style={styles.topFav}></Image>
       </View>
       <View style={styles.mainContainer}>
@@ -35,42 +36,39 @@ const DetailScreen = ({ navigation }) => {
             <View style={styles.line}></View>
             <View style={styles.classInfoItem}>
               <Text style={styles.classInfoItemTitle}>과목번호</Text>
-              <Text style={styles.classInfoItemContent}>3204</Text>
+              <Text style={styles.classInfoItemContent}>
+                {data["과목\n번호"]}
+              </Text>
             </View>
             <View style={styles.line}></View>
             <View style={styles.classInfoItem}>
               <Text style={styles.classInfoItemTitle}>교수님</Text>
-              <Text style={styles.classInfoItemContent}>김지인</Text>
+              <Text style={styles.classInfoItemContent}>{data.교강사}</Text>
             </View>
             <View style={styles.line}></View>
             <View style={styles.classInfoItem}>
               <Text style={styles.classInfoItemTitle}>강의종류</Text>
-              <Text style={styles.classInfoItemContent}>일반</Text>
+              <Text style={styles.classInfoItemContent}>{data.강의종류}</Text>
             </View>
             <View style={styles.line}></View>
             <View style={styles.classInfoItem}>
               <Text style={styles.classInfoItemTitle}>강의실</Text>
-              <Text style={styles.classInfoItemContent}>공C487</Text>
-            </View>
-            <View style={styles.line}></View>
-            <View style={styles.classInfoItem}>
-              <Text style={styles.classInfoItemTitle}>강의교재</Text>
-              <Text style={styles.classInfoItemContent}>HCI 3rd Edition</Text>
+              <Text style={styles.classInfoItemContent}></Text>
             </View>
             <View style={styles.line}></View>
             <View style={styles.classInfoItem}>
               <Text style={styles.classInfoItemTitle}>수업 정원</Text>
-              <Text style={styles.classInfoItemContent}>99명</Text>
+              <Text style={styles.classInfoItemContent}>{data.전체학년}명</Text>
             </View>
             <View style={styles.line}></View>
             <View style={styles.classInfoItem}>
               <Text style={styles.classInfoItemTitle}>원어유형</Text>
-              <Text style={styles.classInfoItemContent}>영어</Text>
+              <Text style={styles.classInfoItemContent}>{data.원어유형}</Text>
             </View>
             <View style={styles.line}></View>
             <View style={styles.classInfoItem}>
               <Text style={styles.classInfoItemTitle}>작년 경쟁률</Text>
-              <Text style={styles.classInfoItemContent}>1.15</Text>
+              <Text style={styles.classInfoItemContent}>?</Text>
             </View>
           </View>
           <View style={styles.classTimeContainer}>
