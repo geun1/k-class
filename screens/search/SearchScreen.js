@@ -46,7 +46,7 @@ const SearchScreen = ({navigation}) => {
   const [time , setTime] = useState([9,22]);
   const [majorDetail, setMajorDetail] = useState([false, false, false]);
   //학년 1,2,3,4,All
-  const [grade, setGrade] = useState([false, false, false, false, false]);
+  const [grade, setGrade] = useState([false, false, false, false, false,false]);
   //요일 월,화,수,목,금
   const [day, setDay] = useState([false, false, false, false, false]);
   //심교 기교 선택 시 학년 선택 필요없음
@@ -109,7 +109,7 @@ const SearchScreen = ({navigation}) => {
     temp = [...day];
     temp[idx] = !temp[idx];
     setDay(temp);
-    console.log(day);
+    //console.log(day);
   };
 
   const handle__timeSlider = (values) => {
@@ -258,7 +258,7 @@ const SearchScreen = ({navigation}) => {
 
       {/*시간 선택 -> 슬라이드 바*/}
       <TimeSlider value = {time} onChange ={handle__timeSlider}/>
-      {console.log(time) }
+      {/* {console.log(time) } */}
       {/* 요일 선택 */}
       <View style={style.btnContainer}>
         <BasicBtn name="월" small="1" onPress={() => handlePress__day(0)} />
@@ -266,6 +266,7 @@ const SearchScreen = ({navigation}) => {
         <BasicBtn name="수" small="1" onPress={() => handlePress__day(2)} />
         <BasicBtn name="목" small="1" onPress={() => handlePress__day(3)} />
         <BasicBtn name="금" small="1" onPress={() => handlePress__day(4)} />
+        <BasicBtn name="토" small="1" onPress={() => handlePress__day(5)} />
       </View>
 
       <View
