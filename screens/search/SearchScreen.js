@@ -16,6 +16,8 @@ import BasicBtn from "./BasicBtn.js";
 //slider library
 import RangeSlider from "rn-range-slider";
 import Slider from "@react-native-community/slider";
+import TimeSlider from "./TimeSlider.js";
+
 import { Ionicons } from "@expo/vector-icons";
 
 //Icons
@@ -41,9 +43,10 @@ const SearchScreen = ({navigation}) => {
   const [cName, setcName] = useState(""); //과목이름
   const [dept, setDept] = useState(""); //학과 저장
   const [major, setMajor] = useState(0); //1 : 전공 2 : 심교 3: 기교
+  const [time , setTime] = useState([9,22]);
   const [majorDetail, setMajorDetail] = useState([false, false, false]);
   //학년 1,2,3,4,All
-  const [grade, setGrade] = useState([false, false, false, false, false]);
+  const [grade, setGrade] = useState([false, false, false, false, false,false]);
   //요일 월,화,수,목,금
   const [day, setDay] = useState([false, false, false, false, false]);
   //심교 기교 선택 시 학년 선택 필요없음
@@ -106,7 +109,11 @@ const SearchScreen = ({navigation}) => {
     temp = [...day];
     temp[idx] = !temp[idx];
     setDay(temp);
-    console.log(day);
+    //console.log(day);
+  };
+
+  const handle__timeSlider = (values) => {
+    setTime(values);  
   };
 
 
@@ -250,12 +257,8 @@ const SearchScreen = ({navigation}) => {
       </View>
 
       {/*시간 선택 -> 슬라이드 바*/}
-      <Slider
-        style={{ width: "80%", height: 40 }}
-        minimumValue={0}
-        maximumValue={1}
-      />
-
+      <TimeSlider value = {time} onChange ={handle__timeSlider}/>
+      {/* {console.log(time) } */}
       {/* 요일 선택 */}
       <View style={style.btnContainer}>
         <BasicBtn name="월" small="1" onPress={() => handlePress__day(0)} />
@@ -263,6 +266,7 @@ const SearchScreen = ({navigation}) => {
         <BasicBtn name="수" small="1" onPress={() => handlePress__day(2)} />
         <BasicBtn name="목" small="1" onPress={() => handlePress__day(3)} />
         <BasicBtn name="금" small="1" onPress={() => handlePress__day(4)} />
+        <BasicBtn name="토" small="1" onPress={() => handlePress__day(5)} />
       </View>
 
       <View
@@ -282,7 +286,7 @@ const SearchScreen = ({navigation}) => {
         <BasicBtn name="검색" 
         onPress={()=>{
           dispatch(clearResult())
-          data = [...searchClass([cName , dept , major , majorDetail , grade , day])]
+          data = [...searchClass([cName , dept , major , majorDetail , grade , day , time])]
           dispatch(addResult(data))
           navigation.navigate("MainScreen");
         }} />
