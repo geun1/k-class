@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   View,
   StyleSheet,
@@ -8,19 +8,15 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import FavoriteImg from "../../assets/main/img_favorite.png";
-import HomeIcon from "../../assets/main/img_homeIcon.png";
+import FavoriteImg from "../../assets/fav/img_favoriteSelected.png";
+import HomeIcon from "../../assets/fav/img_homeIcon.png";
 import SearchIcon from "../../assets/main/img_searchIcon.png";
-import FavIcon from "../../assets/main/img_favIcon.png";
+import FavIcon from "../../assets/fav/img_favIconSelected.png";
 import MyPageIcon from "../../assets/main/img_myPageIcon.png";
-
-import { useSelector } from "react-redux";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 const MainScreen = ({ navigation }) => {
-  const classes = useSelector((state) => state.classes);
-
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
@@ -48,36 +44,71 @@ const MainScreen = ({ navigation }) => {
         </View>
         <View style={styles.listContainer}>
           <ScrollView contentContainerStyle={styles.listScroll}>
-            {classes.map(function (i) {
-              return (
-                <TouchableOpacity
-                  key={i.No}
-                  style={styles.listItem}
-                  onPress={() => {
-                    navigation.navigate("DetailScreen", { data: i });
-                  }}
-                >
-                  <Text style={styles.listItemNum}>{i["과목\n번호"]}</Text>
-                  <Text style={styles.listItemTitle}>{i.교과목명}</Text>
-                  <Image
-                    source={FavoriteImg}
-                    style={styles.listItemFav}
-                  ></Image>
-                </TouchableOpacity>
-              );
-            })}
+            <TouchableOpacity
+              style={styles.listItem}
+              onPress={() => navigation.navigate("DetailScreen")}
+            >
+              <Text style={styles.listItemNum}>1644</Text>
+              <Text style={styles.listItemTitle}>20세기 패션사1</Text>
+              <Image source={FavoriteImg} style={styles.listItemFav}></Image>
+            </TouchableOpacity>
+            <View style={styles.listItem}>
+              <Text style={styles.listItemNum}>1644</Text>
+              <Text style={styles.listItemTitle}>20세기 패션사</Text>
+              <Image source={FavoriteImg} style={styles.listItemFav}></Image>
+            </View>
+            <View style={styles.listItem}>
+              <Text style={styles.listItemNum}>1644</Text>
+              <Text style={styles.listItemTitle}>20세기 패션사</Text>
+              <Image source={FavoriteImg} style={styles.listItemFav}></Image>
+            </View>
+            <View style={styles.listItem}>
+              <Text style={styles.listItemNum}>1644</Text>
+              <Text style={styles.listItemTitle}>20세기 패션사</Text>
+              <Image source={FavoriteImg} style={styles.listItemFav}></Image>
+            </View>
+            <View style={styles.listItem}>
+              <Text style={styles.listItemNum}>1644</Text>
+              <Text style={styles.listItemTitle}>20세기 패션사</Text>
+              <Image source={FavoriteImg} style={styles.listItemFav}></Image>
+            </View>
+            <View style={styles.listItem}>
+              <Text style={styles.listItemNum}>1644</Text>
+              <Text style={styles.listItemTitle}>20세기 패션사</Text>
+              <Image source={FavoriteImg} style={styles.listItemFav}></Image>
+            </View>
+            <View style={styles.listItem}>
+              <Text style={styles.listItemNum}>1644</Text>
+              <Text style={styles.listItemTitle}>20세기 패션사</Text>
+              <Image source={FavoriteImg} style={styles.listItemFav}></Image>
+            </View>
+            <View style={styles.listItem}>
+              <Text style={styles.listItemNum}>1644</Text>
+              <Text style={styles.listItemTitle}>20세기 패션사</Text>
+              <Image source={FavoriteImg} style={styles.listItemFav}></Image>
+            </View>
+            <View style={styles.listItem}>
+              <Text style={styles.listItemNum}>1644</Text>
+              <Text style={styles.listItemTitle}>20세기 패션사</Text>
+              <Image source={FavoriteImg} style={styles.listItemFav}></Image>
+            </View>
+            <View style={styles.listItem}>
+              <Text style={styles.listItemNum}>1644</Text>
+              <Text style={styles.listItemTitle}>20세기 패션사</Text>
+              <Image source={FavoriteImg} style={styles.listItemFav}></Image>
+            </View>
           </ScrollView>
         </View>
       </View>
       <View style={styles.bottomContainer}>
-        <Image source={HomeIcon} style={styles.bottomIconHome}></Image>
+        <TouchableOpacity onPress={() => navigation.navigate("MainScreen")}>
+          <Image source={HomeIcon} style={styles.bottomIconHome}></Image>
+        </TouchableOpacity>
+
         <TouchableOpacity onPress={() => navigation.navigate("SearchScreen")}>
           <Image source={SearchIcon} style={styles.bottomIconSearch}></Image>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("FavScreen")}>
-          <Image source={FavIcon} style={styles.bottomIconFav}></Image>
-        </TouchableOpacity>
-
+        <Image source={FavIcon} style={styles.bottomIconFav}></Image>
         <Image source={MyPageIcon} style={styles.bottomIconMyPage}></Image>
       </View>
     </View>
@@ -151,8 +182,8 @@ const styles = StyleSheet.create({
     fontWeight: 500,
   },
   listItemFav: {
-    width: 30,
-    height: 30,
+    width: 26,
+    height: 22.94,
   },
   bottomContainer: {
     flex: 1,

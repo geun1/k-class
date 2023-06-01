@@ -41,7 +41,7 @@ export function searchClass([cName , dept , major , majorDetail , grade , day, t
 
   //grade
   let grd;
-  if(grade[5]) gre = [1,2,3,4];
+  if(grade[5]) grd = [1,2,3,4];
   else {
     grd = grade.map((el,idx)=>{
       if(el){
@@ -81,6 +81,7 @@ export function searchClass([cName , dept , major , majorDetail , grade , day, t
         case 5 : days.push("토"); break;
       }
     }
+
   })
   if(days.length == 0) {
     days = ["월","화","수","목","금","토"];
