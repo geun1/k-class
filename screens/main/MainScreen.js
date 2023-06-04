@@ -57,7 +57,7 @@ const MainScreen = ({ navigation }) => {
                     navigation.navigate("DetailScreen", { data: i });
                   }}
                 >
-                  <Text style={styles.listItemNum}>{i["과목\n번호"]}</Text>
+                  <Text style={styles.listItemNum}>{i["과목\n\n번호"]}</Text>
                   <Text style={styles.listItemTitle}>{i.교과목명}</Text>
                   <Image
                     source={FavoriteImg}
