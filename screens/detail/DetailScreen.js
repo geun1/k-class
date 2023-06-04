@@ -16,6 +16,7 @@ import MyPageIcon from "../../assets/main/img_myPageIcon.png";
 import BackIcon from "../../assets/detail/img_backIcon.png";
 import FavWIcon from "../../assets/detail/img_favIconW.png";
 import StarIcon from "../../assets/detail/img_commentStar1.png";
+import TimeTableImg from "../../assets/main/timeTable.png";
 
 const DetailScreen = ({ navigation, route }) => {
   const [comment, setComment] = useState("");
@@ -37,7 +38,7 @@ const DetailScreen = ({ navigation, route }) => {
             <View style={styles.classInfoItem}>
               <Text style={styles.classInfoItemTitle}>과목번호</Text>
               <Text style={styles.classInfoItemContent}>
-                {data["과목\n번호"]}
+                {data["과목\n\n번호"]}
               </Text>
             </View>
             <View style={styles.line}></View>
@@ -53,7 +54,7 @@ const DetailScreen = ({ navigation, route }) => {
             <View style={styles.line}></View>
             <View style={styles.classInfoItem}>
               <Text style={styles.classInfoItemTitle}>강의실</Text>
-              <Text style={styles.classInfoItemContent}></Text>
+              <Text style={styles.classInfoItemContent}>{data.강의실}</Text>
             </View>
             <View style={styles.line}></View>
             <View style={styles.classInfoItem}>
@@ -63,17 +64,20 @@ const DetailScreen = ({ navigation, route }) => {
             <View style={styles.line}></View>
             <View style={styles.classInfoItem}>
               <Text style={styles.classInfoItemTitle}>원어유형</Text>
-              <Text style={styles.classInfoItemContent}>{data.원어유형}</Text>
+              <Text style={styles.classInfoItemContent}>
+                {data["원어\n\n유형"]}
+              </Text>
             </View>
             <View style={styles.line}></View>
             <View style={styles.classInfoItem}>
               <Text style={styles.classInfoItemTitle}>작년 경쟁률</Text>
-              <Text style={styles.classInfoItemContent}>?</Text>
+              <Text style={styles.classInfoItemContent}>{data.경쟁률}</Text>
             </View>
           </View>
           <View style={styles.classTimeContainer}>
-            <Text style={styles.classInfoTitle}>수업 시간</Text>
-            <View style={styles.line}></View>
+            {/* <Text style={styles.classInfoTitle}>수업 시간</Text>
+            <View style={styles.line}></View> */}
+            <Image source={TimeTableImg} style={styles.timeTable}></Image>
           </View>
           <View style={styles.classCommentContainer}>
             <Text style={styles.classInfoTitle}>한 줄 코멘트</Text>
@@ -94,9 +98,17 @@ const DetailScreen = ({ navigation, route }) => {
               </View>
             </View>
             <View style={styles.classCommentBox}>
-              <Text style={styles.classComment}>
-                수업은 지루하지만 학점은 잘 주십니다.
-              </Text>
+              <Text style={styles.classComment}>재미있었습니다.</Text>
+              <View style={styles.classCommentStarContainer}>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+                <Image source={StarIcon} style={styles.commentStar}></Image>
+              </View>
+            </View>
+            <View style={styles.classCommentBox}>
+              <Text style={styles.classComment}>수업이 유익합니다.</Text>
               <View style={styles.classCommentStarContainer}>
                 <Image source={StarIcon} style={styles.commentStar}></Image>
                 <Image source={StarIcon} style={styles.commentStar}></Image>
@@ -107,19 +119,7 @@ const DetailScreen = ({ navigation, route }) => {
             </View>
             <View style={styles.classCommentBox}>
               <Text style={styles.classComment}>
-                수업은 지루하지만 학점은 잘 주십니다.
-              </Text>
-              <View style={styles.classCommentStarContainer}>
-                <Image source={StarIcon} style={styles.commentStar}></Image>
-                <Image source={StarIcon} style={styles.commentStar}></Image>
-                <Image source={StarIcon} style={styles.commentStar}></Image>
-                <Image source={StarIcon} style={styles.commentStar}></Image>
-                <Image source={StarIcon} style={styles.commentStar}></Image>
-              </View>
-            </View>
-            <View style={styles.classCommentBox}>
-              <Text style={styles.classComment}>
-                수업은 지루하지만 학점은 잘 주십니다.
+                많은 것을 배운 수업이었습니다.
               </Text>
               <View style={styles.classCommentStarContainer}>
                 <Image source={StarIcon} style={styles.commentStar}></Image>
@@ -218,8 +218,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   classTimeContainer: {
-    paddingHorizontal: 22,
-    paddingVertical: 23,
+    // paddingHorizontal: 22,
+    // paddingVertical: 23,
     backgroundColor: "#fff",
     borderRadius: 15,
     marginBottom: 15,
@@ -292,6 +292,10 @@ const styles = StyleSheet.create({
     width: 38,
     height: 38,
     marginRight: 41,
+  },
+  timeTable: {
+    width: 352,
+    height: 352,
   },
 });
 
